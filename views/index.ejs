@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regents Arrivals</title>
+
+    <style>
+    
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="cover.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    <h2>Current Time: <%= currentTime %></h2>
+
+    <div>
+        <h2>PC Arrival Times</h1>
+        <% for( var index in pcloop_data) { %>
+            <p><%= pcloop_data[index]['ArriveTime'] %>, 
+                <%= pcloop_data[index]['Minutes']%> Minutes</p>
+
+        <% } %>
+    </div>
+
+    <div>
+        <h2>Ruperts Arrival Times</h2>
+        <% for( var index in ruperts_data) { %>
+            <p><%= ruperts_data[index]['ArriveTime'] %>, 
+            <%= ruperts_data[index]['Minutes']%> Minutes</p></p>
+        <% } %>
+    
+    </div>
+
+</body>
+
+
+</html>
+
