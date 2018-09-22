@@ -20,20 +20,24 @@ function getJSON(url) {
     });
 }
 
+function getDate() {
+    var time = new Date();
+    return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+}
+
 app.get('/', function(req, res) {
     const p1 = getJSON(pcloop_url);
     const p2 = getJSON(ruperts_url);
 
     // Takes in array of promises, outputs array of each promise's resolves
     Promise.all([p1, p2]).then( data => {
-        //console.log(data);
-        console.log(data[0]['Predictions']);
+        console.log(data);
 
         // Pass relevant data to view
         res.render('index', {
-            currentTime:data[0]['PredictionTime'],
-            pcloop_data: data[0]['Predictions'],
-            ruperts_data: data[1]['Predictions']
+            currentTime:getDate(),
+            pcloop_data: data[0],
+            ruperts_data: data[1]
         });
     });
 });
@@ -42,3 +46,4 @@ var server = app.listen(process.env.PORT || 8080, function() {
     	var port = server.address().port;
 	console.log('port is', port);
 });
+
