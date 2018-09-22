@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var request = require('request');
+var moment = require('moment-timezone');
 
 // view engine to ejs 
 app.set('view engine', 'ejs');
@@ -21,8 +22,9 @@ function getJSON(url) {
 }
 
 function getDate() {
-    var time = new Date();
-    return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    //var time = new Date();
+    //return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    return moment().tz("America/Los_Angeles").format('hh:mm A');
 }
 
 app.get('/', function(req, res) {
